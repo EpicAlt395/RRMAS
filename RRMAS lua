@@ -1,0 +1,59 @@
+-- Settings
+local HoldClick = true
+local Hotkey = 't' -- Leave blank for always on
+local HotkeyToggle = true -- Toggle mode: true for on/off toggle, false for hold-to-activate
+
+-- Services
+local Players = game:GetService('Players')
+local RunService = game:GetService('RunService')
+
+-- Variables
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local Toggle = (Hotkey ~= '') and false or true -- Default state based on Hotkey presence
+local CurrentlyPressed = false
+
+-- Hotkey Handling
+Mouse.KeyDown:Connect(function(key)
+	if key == Hotkey then
+		if HotkeyToggle then
+			Toggle = not Toggle -- Toggle on/off
+		else
+			Toggle = true -- Activate while key is pressed
+		end
+	end
+end)
+
+Mouse.KeyUp:Connect(function(key)
+	if not HotkeyToggle and key == Hotkey then
+		Toggle = false -- Deactivate when key is released (if not in toggle mode)
+	end
+end)
+
+-- Main Logic
+RunService.RenderStepped:Connect(function()
+	if Toggle and Mouse.Target then
+		local TargetHumanoid = Mouse.Target.Parent:FindFirstChild('Humanoid')
+		
+		if TargetHumanoid then
+			if HoldClick then
+				if not CurrentlyPressed then
+					CurrentlyPressed = true
+					mouse1press() -- Simulate holding down the mouse button
+				end
+			else
+				mouse1click() -- Perform a single click action
+			end
+		else
+			if HoldClick and CurrentlyPressed then
+				CurrentlyPressed = false
+				mouse1release() -- Release the mouse button if no valid target is found
+			end
+		end
+	else
+		if HoldClick and CurrentlyPressed then
+			CurrentlyPressed = false
+			mouse1release() -- Ensure mouse is released if Toggle is off or no target exists
+		end
+	end
+end)
