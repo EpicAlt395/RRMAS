@@ -1,0 +1,6 @@
+--loadstring DONT USE THIS ONE
+game.StarterGui:SetCore("SendNotification", {
+Title = "RRMAS Loaded",
+Text = "Made with love-\n\epicalt395",
+Duration = 5,
+})
