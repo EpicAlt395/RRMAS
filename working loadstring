@@ -1,2 +1,2 @@
 --working loadstring
-loadstring(game:HttpGet("https://raw.githubusercontent.com/EpicAlt395/RRMAS/refs/heads/main/Notification%20Loadstring",true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EpicAlt395/RRMAS/refs/heads/main/notification%20loadstring%202",true))()
