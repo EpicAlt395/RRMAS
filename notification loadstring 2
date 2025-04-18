@@ -1,0 +1,3 @@
+--DONT USE THIS IS TO COMFIRM THE NOTIFCATION OF LOADING USE "WORKING LOADSTRING"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EpicAlt395/RRMAS/refs/heads/main/RRMAS%20lua",true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EpicAlt395/RRMAS/refs/heads/main/Notification%20Loadstring",true))()
